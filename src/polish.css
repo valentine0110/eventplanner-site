@@ -1,0 +1,444 @@
+/* =====================================================
+   POLISH PASS — Event Planer
+   Final finishing layer: typography, spacing, UX fixes,
+   visual refinements and mobile perfection.
+   ===================================================== */
+
+/* ──────────────── 1. Nav pill active glow ──────────────── */
+.nav-link.active {
+  color: var(--paper) !important;
+}
+.nav-link.active::after {
+  background: var(--gold) !important;
+}
+
+/* ──────────────── 2. Loader refinement ──────────────── */
+.page-loader {
+  background: linear-gradient(160deg, #0f0e0c 0%, #1a1814 100%);
+}
+.loader-brand {
+  color: var(--gold-soft);
+  letter-spacing: .42em;
+}
+
+/* ──────────────── 3. Hero title gradient ──────────────── */
+.hero-title {
+  background: linear-gradient(
+    135deg,
+    var(--paper) 0%,
+    var(--gold-soft) 55%,
+    var(--paper) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-title em {
+  -webkit-text-fill-color: var(--gold);
+}
+.hero-title strong {
+  -webkit-text-fill-color: var(--paper);
+}
+
+/* ──────────────── 4. Proof strip numbers ──────────────── */
+.proof-item strong {
+  font-size: clamp(44px, 5vw, 62px);
+  letter-spacing: -.03em;
+}
+
+/* ──────────────── 5. Service cards — image overlay polish ──────────────── */
+.service-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(10,8,6,.42) 0%, transparent 55%);
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+.service-card-modern:hover .service-image::after {
+  opacity: 0.5;
+}
+
+/* ──────────────── 6. Section intro — eyebrow line animate ──────────────── */
+.section-intro .eyebrow span,
+.section-head .eyebrow span {
+  transform-origin: left;
+  animation: grow-line .55s var(--ease-spring) both;
+  animation-play-state: paused;
+}
+.reveal .section-intro .eyebrow span {
+  animation-play-state: running;
+}
+@keyframes grow-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ──────────────── 7. Gallery card — hover overlay tweak ──────────────── */
+.gallery-card::after {
+  background: linear-gradient(0deg, rgba(10,8,6,.82) 0%, rgba(10,8,6,.18) 60%, transparent 100%);
+}
+
+/* ──────────────── 8. Testimonial card quote style ──────────────── */
+.quote-mark {
+  font-size: 120px;
+  line-height: .5;
+  margin-bottom: 8px;
+  user-select: none;
+}
+.testi-slide p {
+  font-size: clamp(26px, 3.2vw, 36px);
+  letter-spacing: -.025em;
+}
+
+/* ──────────────── 9. CTA section decoration ──────────────── */
+.cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 75% 50%, rgba(185,147,90,.06), transparent),
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(185,147,90,.04), transparent);
+  pointer-events: none;
+}
+
+/* ──────────────── 10. Page hero — richer overlay ──────────────── */
+.page-hero-image img {
+  filter: saturate(.65) contrast(1.04) brightness(.88);
+  opacity: .65;
+}
+.page-hero-image-shade {
+  background: linear-gradient(
+    90deg,
+    rgba(9,8,7,.9) 0%,
+    rgba(9,8,7,.55) 45%,
+    rgba(9,8,7,.18) 100%
+  ), linear-gradient(0deg, rgba(9,8,7,.72) 0%, transparent 40%);
+}
+
+/* ──────────────── 11. About story photo caption ──────────────── */
+.story-photo span {
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(245,241,233,.15);
+  letter-spacing: .18em;
+}
+
+/* ──────────────── 12. Blockquote polish ──────────────── */
+.story-grid blockquote {
+  border-left: 2px solid var(--gold);
+  padding-left: 22px;
+  font-size: clamp(24px, 3vw, 33px);
+  color: #3a342e;
+  font-style: italic;
+  letter-spacing: -.02em;
+}
+
+/* ──────────────── 13. Value cards — number accent ──────────────── */
+.value-card > span {
+  font-size: 10px;
+  letter-spacing: .25em;
+}
+.value-card h3 {
+  font-size: clamp(26px, 2.8vw, 34px);
+}
+
+/* ──────────────── 14. Team card monogram ring ──────────────── */
+.team-monogram {
+  box-shadow: 0 0 0 6px rgba(185,147,90,.06);
+}
+
+/* ──────────────── 15. Timeline dot glow ──────────────── */
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 0 5px rgba(185,147,90,.14), 0 0 12px rgba(185,147,90,.2);
+}
+
+/* ──────────────── 16. Process cards ──────────────── */
+.process-card h3 {
+  font-size: clamp(26px, 2.5vw, 32px);
+}
+.process-card > span {
+  letter-spacing: .22em;
+}
+
+/* ──────────────── 17. FAQ item padding ──────────────── */
+.faq-item button {
+  padding: 26px 0;
+}
+.faq-item button span {
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.1;
+}
+.faq-answer p {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #6e675f;
+}
+
+/* ──────────────── 18. Gallery filter pills ──────────────── */
+.filter-pill {
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 8.5px;
+}
+.filter-pill.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 0 4px 16px rgba(0,0,0,.14);
+}
+
+/* ──────────────── 19. Package card featured lift ──────────────── */
+.package-card.featured {
+  box-shadow: 0 28px 60px rgba(27,23,17,.18);
+  border: 1px solid rgba(185,147,90,.22);
+}
+.package-card.featured .package-price {
+  color: var(--gold-soft);
+}
+
+/* ──────────────── 20. Contact form improved ──────────────── */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  color: var(--ink);
+  font-size: 14px;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+}
+.contact-form label > span {
+  color: #9a9088;
+  font-size: 7.5px;
+  letter-spacing: .16em;
+}
+
+/* Contact panel enrichment */
+.contact-panel {
+  background: linear-gradient(155deg, #181512 0%, #0f0e0c 100%);
+  border: 1px solid rgba(185,147,90,.12);
+}
+
+/* ──────────────── 21. Success card ──────────────── */
+.success-card {
+  border: 1px solid rgba(185,147,90,.18);
+  background: linear-gradient(135deg, var(--paper-2) 0%, #fdf9f1 100%);
+}
+.success-card > span {
+  font-size: 48px;
+}
+.success-card h2 {
+  font-size: clamp(60px, 7vw, 88px);
+  letter-spacing: -.04em;
+}
+
+/* ──────────────── 22. Footer refinements ──────────────── */
+.site-footer {
+  background: linear-gradient(180deg, #100f0d 0%, #0a0908 100%);
+}
+.footer-label {
+  color: var(--gold);
+  font-size: 7.5px;
+  letter-spacing: .2em;
+}
+.footer-link {
+  font-size: 12px;
+  color: rgba(245,241,233,.5);
+  transition: color .2s ease, transform .22s ease;
+}
+.footer-link:hover {
+  color: var(--gold-soft);
+  transform: translateX(4px);
+}
+.footer-socials a {
+  font-size: 8.5px;
+  letter-spacing: .15em;
+  color: rgba(245,241,233,.55);
+  transition: color .22s ease;
+}
+.footer-socials a:hover {
+  color: var(--gold-soft);
+}
+.footer-bottom {
+  border-top: 1px solid rgba(245,241,233,.08);
+  color: rgba(245,241,233,.28);
+}
+
+/* ──────────────── 23. Review cards ──────────────── */
+.review-card {
+  border: 1px solid rgba(17,16,14,.08);
+  background: var(--paper);
+  transition: box-shadow .3s ease, transform .3s var(--ease-spring);
+}
+.review-card p {
+  font-size: clamp(22px, 2vw, 27px);
+  letter-spacing: -.02em;
+  line-height: 1.08;
+}
+.stars {
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* ──────────────── 24. Floating WA & back-to-top polish ──────────────── */
+.whatsapp {
+  background: linear-gradient(135deg, #1e1d1a, #2a2720);
+  border: 1px solid rgba(185,147,90,.25);
+  box-shadow: 0 12px 28px rgba(0,0,0,.22), 0 2px 8px rgba(0,0,0,.1);
+}
+.whatsapp:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.to-top {
+  background: rgba(245,241,233,.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(17,16,14,.1);
+  font-size: 17px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.09);
+}
+
+/* ──────────────── 25. Scroll progress gradient ──────────────── */
+.scroll-progress {
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-soft) 60%, var(--paper) 100%);
+  box-shadow: 0 0 6px rgba(185,147,90,.35);
+}
+
+/* ──────────────── 26. Cookie banner ──────────────── */
+.cookie-banner {
+  background: var(--ink-2);
+  border-top: 1px solid rgba(185,147,90,.18);
+  padding: 16px 28px;
+  font-size: 12px;
+  color: rgba(245,241,233,.72);
+  gap: 18px;
+}
+.cookie-banner button {
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 9px;
+  letter-spacing: .12em;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background .22s ease, transform .22s var(--ease-spring);
+}
+.cookie-banner button:hover {
+  background: var(--gold-soft);
+  transform: translateY(-2px);
+}
+
+/* ──────────────── 27. Mosaic gallery tile polish ──────────────── */
+.gallery-tile::after {
+  background: linear-gradient(0deg, rgba(10,8,6,.72) 0%, transparent 55%);
+}
+.gallery-tile span {
+  font-size: 8.5px;
+  letter-spacing: .14em;
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+
+/* ──────────────── 28. Lightbox media caption ──────────────── */
+.lightbox-media > div strong {
+  font-size: clamp(20px, 2.5vw, 30px);
+  letter-spacing: -.025em;
+}
+
+/* ──────────────── 29. Include list in services ──────────────── */
+.include-list span {
+  font-size: 9.5px;
+  letter-spacing: .08em;
+  color: #5d574f;
+}
+.include-list span::before {
+  content: '✓ ';
+  color: var(--gold);
+}
+/* Remove the ✓ prefix from JSX since we add it via CSS */
+
+/* ──────────────── 30. Not found page ──────────────── */
+.not-found {
+  text-align: center;
+}
+
+/* ──────────────── 31. Better selection colour ──────────────── */
+::selection {
+  background: rgba(185,147,90,.35);
+  color: var(--ink);
+}
+
+/* ──────────────── 32. Image focus shine on the service detail images ──────────────── */
+.service-detail-image img {
+  transition: transform 1s var(--ease-spring), filter 1s ease;
+  filter: saturate(.85) contrast(1.02);
+}
+.service-detail-row:hover .service-detail-image img {
+  transform: scale(1.025);
+  filter: saturate(.95) contrast(1.02);
+}
+
+/* ──────────────── 33. Package comparison table ──────────────── */
+th {
+  background: #ede9de;
+  color: #5a5348;
+  letter-spacing: .16em;
+  font-size: 7.5px;
+}
+td {
+  font-size: 12px;
+  color: #4e4842;
+}
+td.yes {
+  color: #4a7a51;
+  font-weight: 600;
+}
+td.no {
+  color: #c0b8b0;
+}
+tr:hover td {
+  background: rgba(185,147,90,.04);
+}
+
+/* ──────────────── 34. Display title clamp refinement ──────────────── */
+.display-title {
+  font-size: clamp(46px, 6.5vw, 90px);
+}
+
+/* ──────────────── 35. Intro section statement size ──────────────── */
+.statement {
+  font-size: clamp(52px, 6.8vw, 96px);
+}
+
+/* ──────────────── 36. Mobile nav CTA link ──────────────── */
+.mobile-nav-cta a {
+  border-radius: 4px;
+}
+
+/* ──────────────── 37. Proof strip on mobile ──────────────── */
+@media (max-width: 480px) {
+  .proof-item strong {
+    font-size: 40px;
+  }
+  .proof-item span {
+    font-size: 7.5px;
+  }
+  .testi-slide p {
+    font-size: 24px;
+  }
+  .hero-title {
+    font-size: clamp(48px, 14vw, 72px);
+  }
+}
+
+/* ──────────────── 38. Back-to-top & WA mobile positions ──────────────── */
+@media (max-width: 480px) {
+  .whatsapp { right: 14px; bottom: 14px; }
+  .to-top   { right: 14px; bottom: 80px; }
+}

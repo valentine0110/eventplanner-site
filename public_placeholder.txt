@@ -1,0 +1,1 @@
+The project uses the image URLs already present in the original site. Replace them with licensed/owned photography before production if required.

@@ -1,0 +1,510 @@
+/* =====================================================
+   ANIMATIONS & TRANSITIONS  — Event Planer
+   All motion, transitions & micro-interactions live here
+   ===================================================== */
+
+/* ──────────────── 1. Shared easing tokens ──────────────── */
+:root {
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-back: cubic-bezier(0.36, 0, 0.66, -0.56);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ──────────────── 2. Page-level entrance ──────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ──────────────── 3. Hero orbit animation ──────────────── */
+.hero-orbit {
+  animation: spin-slow 38s linear infinite;
+}
+.hero-orbit::before {
+  animation: spin-slow 22s linear infinite reverse;
+}
+
+/* ──────────────── 4. Buttons ──────────────── */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold sheen sweep on hover for all buttons */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: skewX(-20deg);
+  transition: left 0.55s var(--ease-spring);
+  pointer-events: none;
+}
+.btn:hover::before {
+  left: 130%;
+}
+
+/* Lift & subtle shadow on hover */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+}
+.btn:active {
+  transform: translateY(-1px);
+  transition-duration: 0.1s;
+}
+
+/* Arrow animates diagonally on link/button hover */
+.btn:hover .arrow,
+.text-link:hover .arrow,
+.underlink:hover .arrow,
+.nav-book:hover .arrow,
+.mobile-nav-cta a:hover .arrow {
+  transform: translate(4px, -4px);
+  transition: transform 0.25s var(--ease-spring);
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.22s var(--ease-spring);
+}
+
+/* ──────────────── 5. Nav links ──────────────── */
+.nav-link {
+  transition: color 0.22s ease;
+}
+.nav-link::after {
+  transform-origin: left center;
+  transition: transform 0.35s var(--ease-spring);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Nav-book pill hover lift */
+.nav-book {
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.nav-book:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+}
+
+/* ──────────────── 6. Service cards ──────────────── */
+.service-card-modern {
+  transition: transform 0.4s var(--ease-spring), background 0.3s ease, box-shadow 0.4s ease;
+}
+.service-card-modern:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 40px rgba(27,23,17,0.1);
+}
+.service-card-modern .service-image img {
+  transition: transform 1s var(--ease-spring);
+}
+.service-card-modern:hover .service-image img {
+  transform: scale(1.06);
+}
+.service-more {
+  transition: color 0.22s ease, gap 0.3s ease;
+}
+.service-card-modern:hover .service-more {
+  color: var(--gold);
+}
+
+/* ──────────────── 7. Gallery cards ──────────────── */
+.gallery-card img {
+  transition: transform 0.75s var(--ease-spring);
+  will-change: transform;
+}
+.gallery-card:hover img {
+  transform: scale(1.07);
+}
+.gallery-card-meta {
+  transition: opacity 0.3s ease, transform 0.35s var(--ease-spring);
+  transform: translateY(6px);
+  opacity: 0.82;
+}
+.gallery-card:hover .gallery-card-meta {
+  transform: translateY(0);
+  opacity: 1;
+}
+.gallery-card::after {
+  transition: opacity 0.4s ease;
+}
+.gallery-card:hover::after {
+  opacity: 0.85;
+}
+/* Focus ring for accessibility */
+.gallery-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ──────────────── 8. Gallery mosaic tiles ──────────────── */
+.gallery-tile img {
+  transition: transform 0.9s var(--ease-spring);
+  will-change: transform;
+}
+.gallery-tile:hover img {
+  transform: scale(1.06);
+}
+
+/* ──────────────── 9. Package cards ──────────────── */
+.package-card {
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+}
+.package-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 26px 44px rgba(36,28,17,0.1);
+}
+.package-card.featured:hover {
+  transform: translateY(-20px);
+}
+
+/* ──────────────── 10. Value / add-on cards ──────────────── */
+.value-card {
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.35s var(--ease-spring);
+}
+.value-card:hover {
+  background: #fffdf8;
+  transform: translateY(-3px);
+}
+
+.addon-card {
+  transition: background 0.25s ease, transform 0.35s var(--ease-spring), box-shadow 0.3s ease;
+}
+.addon-card:hover {
+  background: #fffdf8;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+}
+.addon-card > span {
+  display: inline-block;
+  transition: transform 0.35s var(--ease-out-back);
+}
+.addon-card:hover > span {
+  transform: scale(1.18) rotate(-5deg);
+}
+
+/* ──────────────── 11. Team cards ──────────────── */
+.team-card {
+  transition: box-shadow 0.3s ease, transform 0.3s var(--ease-spring);
+}
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.07);
+}
+.team-monogram {
+  transition: transform 0.4s var(--ease-out-back), border-color 0.3s ease;
+}
+.team-card:hover .team-monogram {
+  transform: scale(1.08);
+  border-color: var(--gold);
+}
+
+/* ──────────────── 12. Timeline rows ──────────────── */
+.timeline-dot {
+  transition: box-shadow 0.3s ease, transform 0.3s var(--ease-out-back);
+}
+.timeline-row:hover .timeline-dot {
+  transform: scale(1.5);
+  box-shadow: 0 0 0 10px rgba(185,147,90,0.16);
+}
+
+/* ──────────────── 13. Review cards ──────────────── */
+.review-card {
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.3s ease;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.07);
+}
+
+/* ──────────────── 14. Contact form fields ──────────────── */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 2px 8px rgba(185,147,90,0.12);
+}
+
+/* ──────────────── 15. Lightbox ──────────────── */
+.lightbox {
+  animation: scaleIn 0.3s var(--ease-spring);
+}
+.lightbox-media {
+  animation: fadeUp 0.4s var(--ease-spring);
+}
+.lightbox-close,
+.lightbox-nav {
+  transition: background 0.2s ease, transform 0.25s var(--ease-spring), border-color 0.2s ease;
+}
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  transform: scale(1.08);
+}
+.lightbox-nav.prev:hover { transform: translateX(-3px) scale(1.06); }
+.lightbox-nav.next:hover { transform: translateX(3px) scale(1.06); }
+
+/* ──────────────── 16. FAQs ──────────────── */
+.faq-item {
+  transition: background 0.22s ease;
+}
+.faq-item:hover {
+  background: rgba(185,147,90,0.03);
+}
+.faq-icon {
+  display: inline-block;
+  transition: transform 0.35s var(--ease-spring), color 0.2s ease;
+}
+.faq-item[open] .faq-icon,
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: var(--gold);
+}
+.faq-answer {
+  transition: grid-template-rows 0.4s var(--ease-spring);
+}
+
+/* ──────────────── 17. Proof / stats strip ──────────────── */
+.proof-item {
+  transition: background 0.25s ease;
+}
+.proof-item:hover {
+  background: rgba(245,241,233,0.04);
+}
+.proof-item strong {
+  transition: color 0.25s ease;
+}
+.proof-item:hover strong {
+  color: var(--gold-soft);
+}
+
+/* ──────────────── 18. Footer links ──────────────── */
+.footer-link {
+  position: relative;
+  display: inline-block;
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+.footer-link:hover {
+  color: var(--paper);
+  transform: translateX(4px);
+}
+
+.footer-socials a {
+  transition: color 0.22s ease, opacity 0.22s ease;
+  opacity: 0.7;
+}
+.footer-socials a:hover {
+  color: var(--gold-soft);
+  opacity: 1;
+}
+
+/* ──────────────── 19. WhatsApp float & to-top ──────────────── */
+.whatsapp {
+  transition: background 0.25s ease, transform 0.3s var(--ease-out-back), box-shadow 0.3s ease;
+}
+.whatsapp:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.22);
+}
+/* Pulse ring */
+.whatsapp::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(185,147,90,0.42);
+  border-radius: 50%;
+  animation: pulse 2.6s infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity: 0.75; }
+  50%      { transform: scale(1.12); opacity: 0.1; }
+}
+
+.to-top {
+  transition: opacity 0.25s ease, transform 0.3s var(--ease-spring), background 0.22s ease;
+}
+.to-top:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  transform: translateY(-3px);
+}
+
+/* ──────────────── 20. Scroll progress bar ──────────────── */
+.scroll-progress {
+  transition: width 0.08s linear;
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+}
+
+/* ──────────────── 21. Filter pills (gallery) ──────────────── */
+.filter-pill {
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s var(--ease-spring);
+}
+.filter-pill:hover {
+  transform: translateY(-2px);
+}
+.filter-pill.active {
+  transform: none;
+}
+
+/* ──────────────── 22. Section intro eyebrow line ──────────────── */
+.eyebrow span {
+  transform-origin: left;
+  animation: draw-line 0.5s var(--ease-spring) forwards;
+}
+
+/* ──────────────── 23. Testimonial slide transition ──────────────── */
+.testi-slide {
+  transition: opacity 0.5s var(--ease-spring), transform 0.5s var(--ease-spring);
+}
+.testi-slide.active {
+  opacity: 1;
+  transform: none;
+}
+
+/* Testimonial control buttons */
+.testi-controls button {
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.25s var(--ease-spring);
+}
+.testi-controls button:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  transform: scale(1.08);
+}
+
+/* ──────────────── 24. Story photo image scale ──────────────── */
+.story-photo img {
+  transition: transform 1s var(--ease-spring);
+}
+.story-photo:hover img {
+  transform: scale(1.03);
+}
+
+/* ──────────────── 25. Feature banner image ──────────────── */
+.feature-banner .feature-image img {
+  transition: transform 8s linear;
+}
+.feature-banner:hover .feature-image img {
+  transform: scale(1.04);
+}
+
+/* ──────────────── 26. Page hero parallax on image ──────────────── */
+.page-hero-image {
+  overflow: hidden;
+}
+.page-hero-image img {
+  transition: transform 1.2s var(--ease-spring), opacity 1.2s ease;
+  will-change: transform, opacity;
+}
+
+/* ──────────────── 27. Cookie banner slide-up ──────────────── */
+.cookie-banner {
+  animation: fadeUp 0.45s var(--ease-spring);
+}
+
+/* ──────────────── 28. Success card entrance ──────────────── */
+.success-card {
+  animation: scaleIn 0.5s var(--ease-spring);
+}
+
+/* ──────────────── 29. Process cards ──────────────── */
+.process-card {
+  transition: background 0.25s ease, transform 0.35s var(--ease-spring), box-shadow 0.3s ease;
+}
+.process-card:hover {
+  background: #fffdf8;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.07);
+}
+.process-card > span {
+  transition: color 0.2s ease;
+}
+.process-card:hover > span {
+  color: var(--gold);
+}
+
+/* ──────────────── 30. Mobile nav link hover slide ──────────────── */
+.mobile-link {
+  transition: color 0.22s ease, padding-left 0.3s var(--ease-spring);
+}
+.mobile-link:hover,
+.mobile-link.active {
+  color: var(--paper);
+  padding-left: 8px;
+}
+.mobile-link b {
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s ease;
+  opacity: 0.7;
+}
+.mobile-link:hover b {
+  transform: translate(4px, -4px);
+  opacity: 1;
+}
+
+/* ──────────────── 31. Package features list ──────────────── */
+.package-features div {
+  transition: color 0.2s ease, transform 0.25s var(--ease-spring);
+}
+.package-card:hover .package-features div {
+  transform: translateX(3px);
+}
+
+/* ──────────────── 32. Reduced motion override ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-orbit,
+  .hero-orbit::before { animation: none; }
+}
