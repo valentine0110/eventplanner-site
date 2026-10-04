@@ -28,7 +28,7 @@
 
 ## Live Demo
 
-**Website:** [https://eventplaner.in](https://eventplaner.in)
+**Website:** [https://event-site-e5c.pages.dev/](https://event-site-e5c.pages.dev/)
 
 ---
 
